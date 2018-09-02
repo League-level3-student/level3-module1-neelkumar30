@@ -14,19 +14,24 @@ public class _05_LongChipCompetition {
 	 **/
 	private ArrayList<Beatle> theBeatles = new ArrayList<Beatle>();
 	Double longest = 0.0;
-	String name = "";
 
 	public static void main(String[] args) {
+		String n = "";
+		
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
+		lcc.initializeBeatles();
 		for (int i = 0; i < lcc.theBeatles.size(); i++) {
-			for (int j = 0; j < args.length; j++) {
-				ArrayList <Chip> c = lcc.theBeatles.get(i).getChips();
+			ArrayList <Chip> c = lcc.theBeatles.get(i).getChips();
+			for (int j = 0; j < c.size(); j++) {
 				if(c.get(j).getLength() > lcc.longest) {
 					lcc.longest = c.get(j).getLength();
-					//name = 
+					Beatle b = lcc.theBeatles.get(i);
+					n = b.getName();
 				}
 			}
 		}
+		System.out.println(n);
+		
 	}
 	
 	private void initializeBeatles() {
