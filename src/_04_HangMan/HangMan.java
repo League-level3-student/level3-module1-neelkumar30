@@ -18,7 +18,6 @@ public class HangMan implements KeyListener {
 	String w;
 	int lives = 10;
 	boolean tempWin = false;
-	boolean officialWin;
 	String popped;
 	int num;
 	boolean permWin = false;
@@ -54,10 +53,6 @@ public class HangMan implements KeyListener {
 			frame.pack();
 		}
 
-		// if(lives == 0) {
-		// JOptionPane
-		// }
-
 	}
 
 	@Override
@@ -76,7 +71,7 @@ public class HangMan implements KeyListener {
 		String part1;
 		String part2;
 		String done = label.getText();
-		if (w.contains(s)) {
+		if (popped.contains(s)) {
 			for (int i = 0; i < popped.length(); i++) {
 				if (user == popped.charAt(i)) {
 					prev = label.getText();
@@ -86,11 +81,12 @@ public class HangMan implements KeyListener {
 					} 
 					
 					else {
-						part2 = prev.substring(i + 1, w.length());
+						System.out.println(i);
+						part2 = prev.substring(i + 1, popped.length());
 					}
 					label.setText(part1 + s + part2);
 					done = label.getText();
-					System.out.println(w);
+					System.out.println(popped);
 				}
 			}
 		}
@@ -123,13 +119,16 @@ public class HangMan implements KeyListener {
 		}
 
 		if (tempWin == true && stack.isEmpty() == false) {
+			System.out.println("reached");
 			label.setText("");
+			System.out.println("Reached here");
 			popped = stack.pop();
 			int length = popped.length();
 			label.setText("_");
 			for (int i = 0; i < length - 1; i++) {
 				label.setText(label.getText() + "_");
 				frame.pack();
+				System.out.println("Frame packed");
 			}
 
 			lives = 9;
